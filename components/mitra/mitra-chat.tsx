@@ -34,11 +34,18 @@ export function MitraChat() {
       ])
     }
   }, [])
+
   const [chips, setChips] = useState<ChipOption[]>(INITIAL_CHIPS)
   const [isTyping, setIsTyping] = useState(false)
   const [hasError, setHasError] = useState(false)
   const [isLiveMode, setIsLiveMode] = useState(false)
   const [pendingRetry, setPendingRetry] = useState<(() => void) | null>(null)
+
+  // ── Ticket deduplication ───────────────────────────────────────────────
+  // Once a ticket is raised we store its ID here.
+  // Any further "confirm_ticket" request shows a "ticket already raised"
+  // message instead of silently creating a duplicate ticket.
+  const [raisedTicketId, setRaisedTicketId] = useState<string | null>(null)
 
   const scrollRef = useRef<HTMLDivElement>(null)
   const messagesEndRef = useRef<HTMLDivElement>(null)
@@ -85,7 +92,12 @@ export function MitraChat() {
           return [...prev, botMsg]
         })
 
-        // If response has chip-style options (non-ticket), show as chips
+        // Save ticket ID once a ticket is first created
+        if (response.ticket?.id) {
+          setRaisedTicketId(response.ticket.id)
+        }
+
+        // If response has chip-style options (non-ticket confirm), show as chips
         if (
           response.options &&
           response.options.length > 0 &&
@@ -107,6 +119,7 @@ export function MitraChat() {
         setIsTyping(false)
       }
     },
+    // eslint-disable-next-line react-hooks/exhaustive-deps
     []
   )
 
@@ -140,9 +153,26 @@ export function MitraChat() {
     [addBotResponse]
   )
 
+  // ── Ticket confirm — with deduplication ──────────────────────────────────
   const handleTicketConfirm = useCallback(() => {
+    if (raisedTicketId) {
+      // A ticket was already raised this session — don't create another one.
+      // Reassure the user that the team is already working on it.
+      const alreadyRaisedMsg: ChatMessage = {
+        id: generateId(),
+        role: "bot",
+        text: `A support ticket has already been raised for you. ✅\n\nOur team is already working on your issue and will contact you shortly. Thank you for your patience! 😊`,
+        ticket: { id: raisedTicketId },
+        timestamp: new Date(),
+      }
+      setMessages((prev) => [...prev, alreadyRaisedMsg])
+      announceMessage(
+        "Mitra says: A ticket has already been raised. Our team will contact you shortly."
+      )
+      return
+    }
     addBotResponse("confirm_ticket", true)
-  }, [addBotResponse])
+  }, [raisedTicketId, addBotResponse])
 
   const handleTicketDismiss = useCallback(() => {
     addBotResponse("dismiss_ticket", true)
@@ -157,7 +187,13 @@ export function MitraChat() {
         timestamp: new Date(),
       }
       setMessages((prev) => [...prev, userMsg])
-      addBotResponse("doc_detail", true)
+
+      // Route to the most relevant detail intent based on document type
+      let detailIntent = "doc_detail"
+      if (doc.type === "RTO Form") detailIntent = "rto_form_detail"
+      else if (doc.type === "ID Proof") detailIntent = "id_proof_detail"
+
+      addBotResponse(detailIntent, true)
     },
     [addBotResponse]
   )
