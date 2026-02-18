@@ -13,7 +13,7 @@ export function ChatHeader() {
         aria-hidden="true"
       >
         <Image
-          src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/image-vWjoIi2hqu4Dplo2Yp2nYkSD7Fv8u3.png"
+          src="/cars24-logo.png"
           alt="CARS24 logo"
           width={28}
           height={28}

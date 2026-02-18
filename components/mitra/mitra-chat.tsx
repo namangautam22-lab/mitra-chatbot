@@ -17,14 +17,23 @@ function generateId() {
 }
 
 export function MitraChat() {
-  const [messages, setMessages] = useState<ChatMessage[]>([
-    {
-      id: generateId(),
-      role: "bot",
-      text: WELCOME_MESSAGE_TEXT,
-      timestamp: new Date(),
-    },
-  ])
+  const [messages, setMessages] = useState<ChatMessage[]>([])
+  const initializedRef = useRef(false)
+
+  // Initialize welcome message on the client only to avoid hydration mismatch
+  useEffect(() => {
+    if (!initializedRef.current) {
+      initializedRef.current = true
+      setMessages([
+        {
+          id: generateId(),
+          role: "bot",
+          text: WELCOME_MESSAGE_TEXT,
+          timestamp: new Date(),
+        },
+      ])
+    }
+  }, [])
   const [chips, setChips] = useState<ChipOption[]>(INITIAL_CHIPS)
   const [isTyping, setIsTyping] = useState(false)
   const [hasError, setHasError] = useState(false)
