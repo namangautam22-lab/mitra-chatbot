@@ -7,7 +7,7 @@ import { MessageBubble } from "@/components/mitra/message-bubble"
 import { QuickChips } from "@/components/mitra/quick-chips"
 import { TypingIndicator } from "@/components/mitra/typing-indicator"
 import { ErrorBanner } from "@/components/mitra/error-banner"
-import { DevToggle } from "@/components/mitra/dev-toggle"
+
 import type { ChatMessage, ChipOption, DocumentItem } from "@/lib/mitra-types"
 import { getDemoResponse, WELCOME_MESSAGE_TEXT, INITIAL_CHIPS } from "@/lib/mitra-demo-data"
 import { emitMitraEvent } from "@/lib/mitra-analytics"
@@ -37,7 +37,6 @@ export function MitraChat() {
   const [chips, setChips] = useState<ChipOption[]>(INITIAL_CHIPS)
   const [isTyping, setIsTyping] = useState(false)
   const [hasError, setHasError] = useState(false)
-  const [isLiveMode, setIsLiveMode] = useState(false)
   const [pendingRetry, setPendingRetry] = useState<(() => void) | null>(null)
 
   const scrollRef = useRef<HTMLDivElement>(null)
@@ -189,7 +188,6 @@ export function MitraChat() {
   return (
     <div className="flex h-dvh flex-col bg-background">
       <ChatHeader />
-      <DevToggle isLive={isLiveMode} onToggle={setIsLiveMode} />
 
       {/* Screen reader live region */}
       <div
