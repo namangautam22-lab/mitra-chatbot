@@ -148,13 +148,7 @@ export function MitraChat() {
         timestamp: new Date(),
       }
       setMessages((prev) => [...prev, userMsg])
-
-      // Route to the most relevant detail intent based on document type
-      let detailIntent = "doc_detail"
-      if (doc.type === "RTO Form") detailIntent = "rto_form_detail"
-      else if (doc.type === "ID Proof") detailIntent = "id_proof_detail"
-
-      addBotResponse(detailIntent, true)
+      addBotResponse("doc_detail", true)
     },
     [addBotResponse]
   )
