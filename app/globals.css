@@ -1,0 +1,102 @@
+@import 'tailwindcss';
+@import 'tw-animate-css';
+
+@custom-variant dark (&:is(.dark *));
+
+:root {
+  --background: #FFFFFF;
+  --foreground: #2D2D2D;
+  --card: #FFFFFF;
+  --card-foreground: #2D2D2D;
+  --popover: #FFFFFF;
+  --popover-foreground: #2D2D2D;
+  --primary: #5B9BD5;
+  --primary-foreground: #FFFFFF;
+  --secondary: #F4F4F6;
+  --secondary-foreground: #2D2D2D;
+  --muted: #F4F4F6;
+  --muted-foreground: #8A8A8E;
+  --accent: #E8F8FF;
+  --accent-foreground: #2D2D2D;
+  --destructive: #E05252;
+  --destructive-foreground: #FFFFFF;
+  --border: #E5E5EA;
+  --input: #E5E5EA;
+  --ring: #5B9BD5;
+  --radius: 0.875rem;
+
+  --mitra-bot: #F4F4F6;
+  --mitra-bot-foreground: #2D2D2D;
+  --mitra-user: #E8F8FF;
+  --mitra-user-foreground: #2D2D2D;
+  --mitra-timestamp: #8A8A8E;
+  --mitra-chip-bg: #FFFFFF;
+  --mitra-chip-border: #D1D5DB;
+  --mitra-chip-hover: #F0F7FF;
+}
+
+@theme inline {
+  --font-sans: 'Inter', 'Geist', 'Geist Fallback', system-ui, sans-serif;
+  --font-mono: 'Geist Mono', 'Geist Mono Fallback', monospace;
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-destructive: var(--destructive);
+  --color-destructive-foreground: var(--destructive-foreground);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+  --radius-sm: calc(var(--radius) - 4px);
+  --radius-md: calc(var(--radius) - 2px);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) + 4px);
+
+  --color-mitra-bot: var(--mitra-bot);
+  --color-mitra-bot-foreground: var(--mitra-bot-foreground);
+  --color-mitra-user: var(--mitra-user);
+  --color-mitra-user-foreground: var(--mitra-user-foreground);
+  --color-mitra-timestamp: var(--mitra-timestamp);
+  --color-mitra-chip-bg: var(--mitra-chip-bg);
+  --color-mitra-chip-border: var(--mitra-chip-border);
+  --color-mitra-chip-hover: var(--mitra-chip-hover);
+}
+
+@layer base {
+  * {
+    @apply border-border outline-ring/50;
+  }
+  body {
+    @apply bg-background text-foreground;
+  }
+}
+
+/* Typing indicator animation */
+@keyframes typingBounce {
+  0%, 60%, 100% { transform: translateY(0); }
+  30% { transform: translateY(-4px); }
+}
+
+.typing-dot {
+  animation: typingBounce 1.4s infinite ease-in-out;
+}
+.typing-dot:nth-child(1) { animation-delay: 0s; }
+.typing-dot:nth-child(2) { animation-delay: 0.2s; }
+.typing-dot:nth-child(3) { animation-delay: 0.4s; }
+
+@media (prefers-reduced-motion: reduce) {
+  .typing-dot {
+    animation: none;
+    opacity: 0.5;
+  }
+}
