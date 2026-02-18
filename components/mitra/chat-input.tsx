@@ -1,7 +1,7 @@
 "use client"
 
 import { useState, useRef, type FormEvent, type KeyboardEvent } from "react"
-import { SendHorizontal, Paperclip } from "lucide-react"
+import { SendHorizontal } from "lucide-react"
 import { emitMitraEvent } from "@/lib/mitra-analytics"
 
 interface ChatInputProps {
@@ -39,14 +39,6 @@ export function ChatInput({ onSend, disabled }: ChatInputProps) {
         onSubmit={handleSubmit}
         className="flex items-end gap-2"
       >
-        <button
-          type="button"
-          className="flex h-11 w-11 shrink-0 items-center justify-center rounded-full text-muted-foreground transition-colors hover:bg-muted hover:text-foreground"
-          aria-label="Attach file"
-        >
-          <Paperclip className="h-5 w-5" />
-        </button>
-
         <div className="relative flex-1">
           <textarea
             ref={inputRef}
