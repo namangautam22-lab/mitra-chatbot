@@ -5,34 +5,34 @@
 
 :root {
   --background: #FFFFFF;
-  --foreground: #2D2D2D;
+  --foreground: #1A1A2E;
   --card: #FFFFFF;
-  --card-foreground: #2D2D2D;
+  --card-foreground: #1A1A2E;
   --popover: #FFFFFF;
-  --popover-foreground: #2D2D2D;
-  --primary: #5B9BD5;
+  --popover-foreground: #1A1A2E;
+  --primary: #4B4EFC;
   --primary-foreground: #FFFFFF;
-  --secondary: #F4F4F6;
-  --secondary-foreground: #2D2D2D;
-  --muted: #F4F4F6;
-  --muted-foreground: #8A8A8E;
-  --accent: #E8F8FF;
-  --accent-foreground: #2D2D2D;
+  --secondary: #F0F0F8;
+  --secondary-foreground: #1A1A2E;
+  --muted: #F0F0F8;
+  --muted-foreground: #6E6E8A;
+  --accent: #EAEBFF;
+  --accent-foreground: #1A1A2E;
   --destructive: #E05252;
   --destructive-foreground: #FFFFFF;
-  --border: #E5E5EA;
-  --input: #E5E5EA;
-  --ring: #5B9BD5;
+  --border: #E0E0F0;
+  --input: #E0E0F0;
+  --ring: #4B4EFC;
   --radius: 0.875rem;
 
-  --mitra-bot: #F4F4F6;
-  --mitra-bot-foreground: #2D2D2D;
-  --mitra-user: #E8F8FF;
-  --mitra-user-foreground: #2D2D2D;
-  --mitra-timestamp: #8A8A8E;
+  --mitra-bot: #F0F0F8;
+  --mitra-bot-foreground: #1A1A2E;
+  --mitra-user: #EAEBFF;
+  --mitra-user-foreground: #1A1A2E;
+  --mitra-timestamp: #6E6E8A;
   --mitra-chip-bg: #FFFFFF;
-  --mitra-chip-border: #D1D5DB;
-  --mitra-chip-hover: #F0F7FF;
+  --mitra-chip-border: #C8C8E0;
+  --mitra-chip-hover: #EAEBFF;
 }
 
 @theme inline {

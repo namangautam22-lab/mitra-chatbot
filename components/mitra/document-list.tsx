@@ -50,11 +50,9 @@ export function DocumentList({ documents, onSelect }: DocumentListProps) {
                 "inline-block rounded-full px-2 py-0.5 text-[10px] font-medium uppercase tracking-wide",
                 doc.status === "Delivered"
                   ? "bg-emerald-50 text-emerald-700"
-                  : doc.status === "In Transit" || doc.status === "Dispatched"
+                  : doc.status === "In Transit"
                     ? "bg-amber-50 text-amber-700"
-                    : doc.status === "Pending"
-                      ? "bg-red-50 text-red-600"
-                      : "bg-muted text-muted-foreground"
+                    : "bg-muted text-muted-foreground"
               )}
             >
               {doc.status}

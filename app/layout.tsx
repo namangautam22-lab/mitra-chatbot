@@ -13,8 +13,8 @@ const _geistMono = Geist_Mono({
 })
 
 export const metadata: Metadata = {
-  title: 'Mitra - Document Support Assistant',
-  description: 'Your calm, professional document support chatbot for channel partners. Track documents, get digital copies, and raise tickets.',
+  title: 'CARS24 - Document Support Assistant',
+  description: 'Your CARS24 document support chatbot for channel partners. Track documents, get digital copies, and raise tickets.',
   generator: 'v0.app',
   icons: {
     icon: [
@@ -36,7 +36,7 @@ export const metadata: Metadata = {
 }
 
 export const viewport: Viewport = {
-  themeColor: '#5B9BD5',
+  themeColor: '#4B4EFC',
   width: 'device-width',
   initialScale: 1,
   maximumScale: 1,
